@@ -1,0 +1,35 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /${spring.application.name}
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git, vault
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ishailendra/spring-cloud-config-server-demo
+          username: ishailendra
+          password: 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
+          order: 2
+          force-pull: true
+          default-label:  main
+        vault:
+          host: 127.0.0.1
+          skipSslValidation: 'true'
+          token: hvs.BDiKqYb2Cn0Duphl1YDk2D4t
+          kvVersion: '2'
+          port: '8200'
+          backend: application
+          profileSeparator: /
+          scheme: http
+          order: 1
+
+logging:
+  level:
+    ROOT: DEBUG
+    org.springframework.cloud.config: DEBUG
+    org.springframework.cloud.vault: DEBUG
